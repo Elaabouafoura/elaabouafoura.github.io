@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en" :lang="lang" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Elaa Bouafoura — Computer Engineer (ESPRIT) based in Tunis, specializing in Full Stack Development and Artificial Intelligence. Seeking a Full Stack & AI Engineer position.">
+<meta name="keywords" content="IT engineer, full stack developer, machine learning, AI, DevOps, portfolio, React, NestJS, FastAPI">
+<meta name="author" content="Elaa Bouafoura">
+<meta property="og:title" content="Elaa Bouafoura — IT Engineer">
+<meta property="og:description" content="I build intelligent, scalable web applications — from full stack products to AI and DevOps pipelines.">
+<meta property="og:type" content="website">
+<title>Elaa Bouafoura — Full Stack &amp; AI Engineer</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['PT Sans','sans-serif'], body: ['DM Sans','sans-serif'] },
+      colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'DM Sans',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
+body{transition:background-color .3s,color .3s}
+
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+.nl{position:relative}
+.nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nl:hover::after,.nl.on::after{width:100%}
+.nl.on{font-weight:500}
+
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+.shimmer:hover::after{left:160%}
+
+.pf{overflow:hidden;background:#d4d4d8}
+.pf img{width:100%;height:100%;object-fit:cover;display:block}
+
+.card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+.card-h:hover{transform:translateY(-4px)}
+.stag{transition:border-color .18s}
+[x-cloak]{display:none!important}
+.noscroll{scrollbar-width:none}.noscroll::-webkit-scrollbar{display:none}
+
+/* Stack & tools: sliding animation */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq-slide var(--mq-t,38s) linear infinite}
+.mq-track.rev{animation-direction:reverse}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-grp{display:flex;gap:.5rem;padding-right:.5rem}
+@keyframes mq-slide{to{transform:translateX(-50%)}}
+.mq-tag{transition:transform .2s,border-color .2s,color .2s}
+.mq-tag:hover{transform:translateY(-3px) scale(1.06);color:#FF6B2B}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none;flex-wrap:wrap;width:auto}.mq-grp+.mq-grp{display:none}.mq-grp{flex-wrap:wrap}}
+</style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+
+<!-- ═══ NAV ═══ -->
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+
+    <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
+      <span class="text-zinc-900 dark:text-white">elaa</span><span class="text-accent">.</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
+      <li><a href="#services" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='services'?'on !text-zinc-900 dark:!text-white':''">Services</a></li>
+      <li><a href="#work"     class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='work'?'on !text-zinc-900 dark:!text-white':''">Projects</a></li>
+      <li><a href="#about"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='about'?'on !text-zinc-900 dark:!text-white':''">About</a></li>
+      <li><a href="#contact"  class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <button @click="toggleLang()" class="h-9 px-3 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-bold tracking-wide" :aria-label="lang==='en'?'Passer en français':'Switch to English'" title="Français / English"><span :class="lang==='en'?'text-accent':'opacity-50'">EN</span><span class="opacity-30 mx-1">/</span><span :class="lang==='fr'?'text-accent':'opacity-50'">FR</span></button>
+        <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" :aria-label="dark?t('Light mode'):t('Dark mode')">
+        <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg x-show="dark"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 shimmer bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">
+        Hire me <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <a
+    :href="lang === 'fr'
+        ? 'media1/cv_elaa_bouafoura.pdf'
+        : 'media/cv_elaa_bouafoura.pdf'"
+    :download="lang === 'fr'
+        ? 'CV_Elaa_Bouafoura_FR.pdf'
+        : 'CV_Elaa_Bouafoura_EN.pdf'"
+    class="hidden md:inline-flex items-center gap-2 border border-accent text-accent text-sm font-medium px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
+>
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v4h16v-4"/>
+    </svg>
+
+    <span x-text="t(' CV')"></span>
+</a>
+      <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" :aria-expanded="mm" aria-label="Toggle menu">
+        <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div x-show="mm" x-cloak
+    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+    <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list">
+      <li><a href="#services" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Services</a></li>
+      <li><a href="#work"     @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Projects</a></li>
+      <li><a href="#about"    @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">About</a></li>
+      <li><a href="#contact"  @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Contact</a></li>
+      <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+        <a href="#contact" @click="mm=false" class="inline-flex shimmer bg-accent text-white font-medium text-sm px-5 py-2.5 rounded-full">Hire me →</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+  <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-zinc-200/50 dark:bg-zinc-800/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <p class="reveal text-sm font-medium text-accent tracking-widest uppercase mb-4">Seeking a Full Stack &amp; AI Engineer role</p>
+        <h1 class="reveal d1 font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-zinc-900 dark:text-white mb-6">
+          Hi, I'm <span class="text-accent">Elaa</span>
+        </h1>
+        <p class="reveal d2 text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-light leading-relaxed max-w-md mb-10">
+          <strong class="font-medium text-zinc-700 dark:text-zinc-300">Computer Engineer</strong> based in Tunis, specializing in Full Stack Development and Artificial Intelligence. I build web applications, ML models and AI-powered solutions — from React and NestJS to RAG and CI/CD.
+        </p>
+        <div class="reveal d3 flex flex-wrap gap-4">
+          <a href="#work" class="shimmer inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm">
+            View my projects
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-sm">Get in touch</a>
+        </div>
+        <div class="reveal d4 flex gap-8 mt-14 pt-8 border-t border-zinc-100 dark:border-zinc-900">
+          <div><p class="font-display font-bold text-3xl text-zinc-900 dark:text-white">3</p><p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Engineering internships</p></div>
+          <div><p class="font-display font-bold text-3xl text-zinc-900 dark:text-white">7</p><p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Featured projects</p></div>
+          <div><p class="font-display font-bold text-3xl text-zinc-900 dark:text-white">3</p><p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Languages</p></div>
+        </div>
+      </div>
+
+      <div class="reveal d2 flex justify-center md:justify-end">
+        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <!-- TODO: replace the initials block by your photo:
+               <div class="pf w-full h-full rounded-3xl"><img src="images/elaa.jpg" alt="Elaa Bouafoura" loading="eager"></div> -->
+          <div class="w-full h-full rounded-3xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center shadow-xl">
+            <span class="font-display font-bold text-8xl text-white/90 tracking-tight">EB</span>
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-display font-bold text-sm px-4 py-2.5 rounded-2xl shadow-lg">Full Stack · AI · DevOps</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-14">
+      <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">What I do</p>
+      <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Services</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <article class="reveal d1 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
+          <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">Full Stack Development</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">End-to-end web applications with React,Angular, Node.js / NestJS, Django, Laravel and Spring Boot — clean APIs, solid databases (PostgreSQL, MongoDB, MySQL) and responsive interfaces.</p>
+      </article>
+
+      <article class="reveal d2 card-h group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 group-hover:bg-accent/20 transition-colors">
+          <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">AI &amp; Machine Learning</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">Anomaly detection and failure prediction (Isolation Forest, XGBoost, LSTM/GRU), RAG systems, conversational agents and LLM-powered automation (Rasa, OpenAI, Gemini, n8n).</p>
+      </article>
+
+      <article class="reveal d3 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
+          <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">DevOps &amp; CI/CD</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">Automated pipelines with Jenkins, SonarQube and Nexus, containerization with Docker, and monitoring with Prometheus and Grafana — ship faster, break less.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section id="work" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-10">
+      <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Portfolio</p>
+      <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white mb-4">My projects</h2>
+      <p class="reveal d2 text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed mb-8">Internship and personal work in Full Stack Development, AI &amp; Machine Learning, DevOps and AR/IoT.</p>
+
+      <!-- Filters -->
+      <div class="reveal d3 flex flex-wrap gap-2">
+        <template x-for="f in filterOptions" :key="f.value">
+          <button @click="filter=f.value"
+            :class="filter===f.value ? 'bg-accent text-white border-accent' : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'"
+            class="text-sm px-4 py-1.5 rounded-full border transition-colors" x-text="t(f.label)"></button>
+        </template>
+      </div>
+    </div>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-6"><span x-text="visibleCount"></span> projects</p>
+
+    <!-- Cards: no .reveal here (they are rendered by Alpine after page load) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <template x-for="p in allProjects" :key="p.id">
+        <div x-show="filter==='all' || p.category===filter"
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 scale-95 translate-y-2"
+          x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-200"
+          x-transition:leave-start="opacity-100 scale-100"
+          x-transition:leave-end="opacity-0 scale-95">
+          <article class="card-h group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <a :href="'#project-'+p.id" class="block pf w-full h-52">
+              <img :src="p.cover" :alt="p.title" loading="lazy" @error="$el.style.visibility='hidden'">
+            </a>
+            <div class="p-6 flex flex-col flex-1">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs px-2.5 py-1 rounded-full bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700" x-text="L(p).categoryLabel"></span>
+                <template x-for="tag in p.tags" :key="tag">
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400" x-text="tag"></span>
+                </template>
+              </div>
+              <a :href="'#project-'+p.id">
+                <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors" x-text="p.title"></h3>
+              </a>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5" x-text="L(p).desc"></p>
+              <div class="flex items-center justify-between mt-auto">
+                <a :href="'#project-'+p.id" class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nl" x-text="t('View project →')"></a>
+                <div class="flex items-center gap-3">
+                  <a x-show="p.repo" :href="p.repo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-accent transition-colors" :aria-label="t('GitHub repository of ') + p.title">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span x-text="t('Code')"></span>
+                  </a>
+                  <span class="text-xs text-zinc-400" x-text="p.year"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </template>
+    </div>
+
+    <div x-show="visibleCount===0" x-cloak class="text-center py-20">
+      <p class="text-zinc-400 text-sm" x-text="t('No projects in this category yet.')"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div class="reveal order-2 md:order-1">
+        <!-- TODO: replace by your photo if you want -->
+        <div class="w-full aspect-square max-w-sm mx-auto rounded-3xl bg-gradient-to-br from-zinc-900 to-zinc-700 dark:from-zinc-800 dark:to-zinc-900 flex items-center justify-center">
+          <span class="font-display font-bold text-8xl text-accent">EB</span>
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">About me</p>
+        <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white leading-tight mb-6">A bit about<br>who I am</h2>
+        <p class="reveal d2 text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
+          I'm Elaa Bouafoura, a computer engineer from Tunis. I hold an engineering degree in Computer Science from ESPRIT (2023–2026) and have completed internships at Wevioo (Tunis), TGH Services (France) and ArabSoft (Tunis).
+        </p>
+        <p class="reveal d3 text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
+          I like turning complex problems — predictive maintenance, recruitment automation, emergency response — into reliable products, from the first line of code to the CI/CD pipeline that ships it. I'm looking for a Full Stack &amp; AI Engineer position.
+        </p>
+        <p class="reveal d3 text-sm text-zinc-500 dark:text-zinc-400 mb-8"><span class="font-medium text-zinc-700 dark:text-zinc-300">Languages:</span> Arabic (native) · French (C1) · English (B2)</p>
+        <div class="reveal d4 mb-10">
+          <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4">Education</p>
+          <ol class="relative border-l border-zinc-200 dark:border-zinc-700 ml-1.5 space-y-6">
+            <li class="pl-6 relative">
+              <span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-accent ring-4 ring-zinc-50 dark:ring-zinc-900"></span>
+              <p class="text-xs text-accent font-medium mb-1">2023 – 2026</p>
+              <h4 class="font-display font-bold text-zinc-900 dark:text-white">Engineering Degree in Computer Science</h4>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">ESPRIT – Private Higher School of Engineering and Technology, Tunis</p>
+            </li>
+            <li class="pl-6 relative">
+              <span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-zinc-400 dark:bg-zinc-600 ring-4 ring-zinc-50 dark:ring-zinc-900"></span>
+              <p class="text-xs text-accent font-medium mb-1">2021 – 2023</p>
+              <h4 class="font-display font-bold text-zinc-900 dark:text-white">Scientific Preparatory Cycle</h4>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">Faculty of Sciences of Tunis</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="reveal d4">
+          <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-3">Stack &amp; tools</p>
+          <div class="space-y-3" role="list" aria-label="Skills">
+            <div class="marquee"><div class="mq-track" style="--mq-t:34s"><div class="mq-grp"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">React</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Node.js / Express</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">NestJS</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">FastAPI</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Django</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Laravel</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Spring Boot</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Python</span></div><div class="mq-grp" aria-hidden="true"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">React</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Node.js / Express</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">NestJS</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">FastAPI</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Django</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Laravel</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Spring Boot</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Python</span></div></div></div>
+            <div class="marquee"><div class="mq-track rev" style="--mq-t:40s"><div class="mq-grp"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">PostgreSQL</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">MongoDB</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Docker</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Jenkins</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">SonarQube</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Prometheus / Grafana</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Unity / C#</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">n8n</span></div><div class="mq-grp" aria-hidden="true"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">PostgreSQL</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">MongoDB</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Docker</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Jenkins</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">SonarQube</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Prometheus / Grafana</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Unity / C#</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">n8n</span></div></div></div>
+            <div class="marquee"><div class="mq-track" style="--mq-t:36s"><div class="mq-grp"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Angular</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">TensorFlow</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Scikit-learn</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Rasa</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Keycloak / JWT</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">RabbitMQ</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Git / Jira</span></div><div class="mq-grp" aria-hidden="true"><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Angular</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">TensorFlow</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Scikit-learn</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Rasa</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Keycloak / JWT</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">RabbitMQ</span><span role="listitem" class="mq-tag stag text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full hover:border-accent whitespace-nowrap">Git / Jira</span></div></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-16 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10 grid md:grid-cols-2 gap-12 items-start">
+
+        <div>
+          <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Get in touch</p>
+          <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-5">Let's build<br>something together</h2>
+          <p class="reveal d2 text-zinc-400 leading-relaxed mb-8">I'm open to full-time roles and freelance missions in full stack, AI/ML and DevOps. Have an idea or a project in mind? Let's talk.</p>
+
+          <div class="reveal d3 flex flex-col gap-4">
+            <a href="mailto:elaa.bouafoura@gmail.com" class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+              <span class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </span>
+              <span class="text-sm">elaa.bouafoura@gmail.com</span>
+            </a>
+            <a href="tel:+21698125985" class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+              <span class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </span>
+              <span class="text-sm">+216 98 125 985 · Tunis</span>
+            </a>
+            <a href="https://www.linkedin.com/in/elaa-bouafoura-72665a284/" rel="noopener noreferrer" target="_blank" class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+              <span class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </span>
+              <span class="text-sm">linkedin.com/in/elaa-bouafoura</span>
+            </a>
+            <a href="https://github.com/Elaabouafoura" rel="noopener noreferrer" target="_blank" class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+              <span class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </span>
+              <span class="text-sm">github.com/Elaabouafoura</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal d2">
+          <!-- The form opens the visitor's mail client. For a real backend, use Formspree/Netlify Forms and replace the action. -->
+          <form @submit.prevent="sendMail($event)" novalidate>
+            <div class="flex flex-col gap-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="fname" class="block text-xs font-medium text-zinc-400 mb-1.5">Name <span aria-hidden="true">*</span></label>
+                  <input type="text" id="fname" name="name" placeholder="name" required autocomplete="name"
+                    class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+                </div>
+                <div>
+                  <label for="femail" class="block text-xs font-medium text-zinc-400 mb-1.5">Email <span aria-hidden="true">*</span></label>
+                  <input type="email" id="femail" name="email" placeholder="exemple@company.com" required autocomplete="email"
+                    class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+                </div>
+              </div>
+              <div>
+                <label for="fsubject" class="block text-xs font-medium text-zinc-400 mb-1.5">Subject</label>
+                <input type="text" id="fsubject" name="subject" placeholder="Project inquiry"
+                  class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+              </div>
+              <div>
+                <label for="fmessage" class="block text-xs font-medium text-zinc-400 mb-1.5">Message <span aria-hidden="true">*</span></label>
+                <textarea id="fmessage" name="message" rows="4" placeholder="Tell me about your project..." required
+                  class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
+              </div>
+              <button type="submit" class="shimmer w-full bg-accent text-white font-display font-bold text-sm py-3.5 rounded-xl hover:bg-accent-light transition-colors">
+                Send message →
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-zinc-400">© <span id="year"></span> Elaa Bouafoura. All rights reserved.</p>
+    
+  </div>
+</footer>
+
+<!-- ═══ PROJECT DETAIL (opens with #project-<id>) ═══ -->
+<div x-show="current" x-cloak x-ref="detail"
+  x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+  @keydown.escape.window="lightbox ? lightbox=null : (current && closeProject())"
+  class="fixed inset-0 z-[60] overflow-y-auto bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
+  role="dialog" aria-modal="true" aria-label="Project details">
+
+  <div class="sticky top-0 z-10 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-900">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <button @click="closeProject()" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-accent transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+        Back to projects
+      </button>
+      <div class="flex items-center gap-3">
+        <button @click="toggleLang()" class="h-9 px-3 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-bold tracking-wide" :aria-label="lang==='en'?'Passer en français':'Switch to English'" title="Français / English"><span :class="lang==='en'?'text-accent':'opacity-50'">EN</span><span class="opacity-30 mx-1">/</span><span :class="lang==='fr'?'text-accent':'opacity-50'">FR</span></button>
+        <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" :aria-label="dark?t('Light mode'):t('Dark mode')">
+          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+        </button>
+        <button @click="closeProject()" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" aria-label="Close">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <template x-if="current">
+    <div class="pb-24">
+
+      <section class="max-w-6xl mx-auto px-6 pt-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs px-3 py-1 rounded-full bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700" x-text="L(current).categoryLabel"></span>
+          <template x-for="t in current.tags" :key="t">
+            <span class="text-xs px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400" x-text="t"></span>
+          </template>
+        </div>
+
+        <h2 class="font-display font-bold text-4xl md:text-6xl leading-tight text-zinc-900 dark:text-white mb-6" x-text="current.title"></h2>
+        <p class="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl mb-8" x-text="L(current).overview"></p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-10">
+          <a x-show="current.repo" :href="current.repo" target="_blank" rel="noopener noreferrer"
+            class="shimmer inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium px-6 py-3 rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <span x-text="t('View on GitHub')"></span>
+          </a>
+          <span x-show="!current.repo && current.confidential" class="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 border border-dashed border-zinc-300 dark:border-zinc-700 px-5 py-3 rounded-full">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4"/></svg>
+            <span x-text="t('Company project — source code not public')"></span>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-t border-b border-zinc-100 dark:border-zinc-900">
+          <div><p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('Context')"></p><p class="text-sm font-medium text-zinc-900 dark:text-white" x-text="L(current).context"></p></div>
+          <div><p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('Role')"></p><p class="text-sm font-medium text-zinc-900 dark:text-white" x-text="L(current).role"></p></div>
+          <div><p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('Period')"></p><p class="text-sm font-medium text-zinc-900 dark:text-white" x-text="current.period"></p></div>
+          <div><p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('Category')"></p><p class="text-sm font-medium text-zinc-900 dark:text-white" x-text="L(current).categoryLabel"></p></div>
+        </div>
+      </section>
+
+      <section class="max-w-6xl mx-auto px-6 mt-10" x-show="current.slug!=='cv-reviewer' && current.slug!=='ar-drone'">
+        <div class="pf w-full h-64 md:h-[480px] rounded-3xl">
+          <img :src="current.cover" :alt="current.title" @error="$el.style.visibility='hidden'">
+        </div>
+      </section>
+
+      <template x-if="current.slug==='ar-drone'">
+      <section x-show="videoKind" x-cloak class="max-w-6xl mx-auto px-6 mt-10">
+        <div class="rounded-2xl overflow-hidden bg-zinc-900 aspect-video">
+          <template x-if="videoKind==='iframe'">
+            <iframe :src="videoEmbed" class="w-full h-full" title="Project demo video" allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </template>
+          <template x-if="videoKind==='file'">
+            <video :src="current.video" class="w-full h-full" controls preload="metadata"></video>
+          </template>
+        </div>
+      </section>
+      </template>
+
+      <section class="max-w-6xl mx-auto px-6 mt-10" x-show="shots.length && current.slug==='cv-reviewer'" x-cloak>
+        <div class="relative">
+          <div x-ref="slider"
+            @scroll.debounce.60ms="slide = Math.round($el.scrollLeft / $el.clientWidth)"
+            @mousedown="sliderDown($event)" @mousemove="sliderMove($event)" @mouseup="sliderUp()" @mouseleave="sliderUp()"
+            class="noscroll flex overflow-x-auto snap-x snap-mandatory rounded-3xl border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 cursor-grab select-none">
+            <template x-for="(src, i) in shots" :key="src">
+              <figure class="snap-center shrink-0 w-full flex items-center justify-center p-2 md:p-4" @click="if(!moved) lightbox=src">
+                <img :src="src" :alt="current.title + ' screenshot ' + (i+1)" draggable="false" class="w-full max-h-[70vh] object-contain rounded-2xl">
+              </figure>
+            </template>
+          </div>
+          <template x-if="shots.length > 1">
+            <div>
+              <button @click="slideTo(slide-1)" :disabled="slide===0" aria-label="Previous"
+                class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 shadow flex items-center justify-center hover:border-accent transition disabled:opacity-30">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button @click="slideTo(slide+1)" :disabled="slide>=shots.length-1" aria-label="Next"
+                class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 shadow flex items-center justify-center hover:border-accent transition disabled:opacity-30">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </template>
+        </div>
+        <div class="flex items-center justify-center gap-2 mt-4" x-show="shots.length > 1">
+          <template x-for="(src, i) in shots" :key="'d'+src">
+            <button @click="slideTo(i)" :aria-label="'Photo ' + (i+1)" class="h-2 rounded-full transition-all" :class="slide===i ? 'w-6 bg-accent' : 'w-2 bg-zinc-300 dark:bg-zinc-700'"></button>
+          </template>
+        </div>
+      </section>
+
+
+      <section class="max-w-6xl mx-auto px-6 mt-16 grid md:grid-cols-3 gap-12">
+        <div class="md:col-span-2">
+          <h3 class="font-display font-bold text-2xl md:text-3xl mb-6" x-text="t('What I built')"></h3>
+          <ul class="space-y-4">
+            <template x-for="h in L(current).highlights" :key="h">
+              <li class="flex gap-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <span class="mt-2 w-2 h-2 rounded-full bg-accent shrink-0"></span>
+                <span x-text="h"></span>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <aside>
+          <h3 class="font-display font-bold text-2xl md:text-3xl mb-6" x-text="t('Tech stack')"></h3>
+          <div class="flex flex-wrap gap-2">
+            <template x-for="t in current.tags" :key="t">
+              <span class="text-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-3.5 py-1.5 rounded-full" x-text="t"></span>
+            </template>
+          </div>
+        </aside>
+      </section>
+
+      <template x-if="current.slug!=='ar-drone'">
+      <section x-show="videoKind" x-cloak class="max-w-5xl mx-auto px-6 mt-20">
+        <h3 class="font-display font-bold text-2xl md:text-3xl mb-6" x-text="t('Demo video')"></h3>
+        <div class="rounded-2xl overflow-hidden bg-zinc-900 aspect-video">
+          <template x-if="videoKind==='iframe'">
+            <iframe :src="videoEmbed" class="w-full h-full" title="Project demo video" allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </template>
+          <template x-if="videoKind==='file'">
+            <video :src="current.video" class="w-full h-full" controls preload="metadata"></video>
+          </template>
+        </div>
+      </section>
+      </template>
+
+      <section class="max-w-6xl mx-auto px-6 mt-20" x-show="shots.length && current.slug!=='cv-reviewer'" x-cloak>
+        <h3 class="font-display font-bold text-2xl md:text-3xl mb-6" x-text="t('Screenshots')"></h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <template x-for="(src, i) in shots" :key="src">
+            <figure class="card-h rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in" @click="lightbox=src">
+              <img :src="src" :alt="current.title + ' screenshot ' + (i+1)" class="w-full h-56 object-cover">
+            </figure>
+          </template>
+        </div>
+      </section>
+
+      <section class="max-w-6xl mx-auto px-6 mt-24">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a :href="'#project-' + prev.id" class="group border border-zinc-100 dark:border-zinc-800 hover:border-accent rounded-2xl p-6 transition-colors">
+            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('← Previous')"></p>
+            <p class="font-display font-bold text-lg group-hover:text-accent transition-colors" x-text="prev.title"></p>
+          </a>
+          <a :href="'#project-' + next.id" class="group border border-zinc-100 dark:border-zinc-800 hover:border-accent rounded-2xl p-6 transition-colors sm:text-right">
+            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-1" x-text="t('Next →')"></p>
+            <p class="font-display font-bold text-lg group-hover:text-accent transition-colors" x-text="next.title"></p>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </template>
+
+  <div x-show="lightbox" x-cloak x-transition.opacity @click="lightbox=null"
+    class="fixed inset-0 z-[70] bg-black/85 flex items-center justify-center p-6 cursor-zoom-out">
+    <img :src="lightbox" alt="Enlarged screenshot" class="max-w-full max-h-full rounded-xl shadow-2xl">
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   PROJECTS DATA — the only file you need to edit to update your projects.
+
+   Folder  : media/<slug>/   (next to index.html)
+             cover.jpg                      → image of the project card on the home page
+             demo.mp4                       → "Demo video"  (smart-car, ar-drone, art-gallery, rescueon)
+             screenshot-1.png ... -6.png    → "Screenshots" (cv-reviewer, cicd-pipeline, urbangreen)
+             (missing files are hidden automatically)
+   Video   : you can also set  video  to a YouTube / Loom link instead of a file
+   GitHub  : set  repo  to the repository URL (leave '' to hide the Code button)
+   Company : confidential:true shows "Company project — source code not public"
+   ========================================================================== */
+
+// Builds ['images/<slug>/screenshot-1.png', ...]
+function shots(slug, n = 6) {
+  return Array.from({ length: n }, (_, i) => `media/${slug}/screenshot-${i + 1}.png`);
+}
+
+const PROJECTS = [
+  {
+    id: 1,
+    fr: {"categoryLabel": "IA & Machine Learning", "context": "Stage d'ingénieur — Wevioo, Tunis", "role": "Stagiaire ingénieure Full Stack & IA", "desc": "Projet de stage chez Wevioo. Application full stack de supervision de véhicules avec chatbot Rasa, modèles de ML (Isolation Forest, XGBoost, LSTM/GRU) pour la détection d'anomalies, la prédiction de pannes et des prévisions de capteurs sur 14 jours, ainsi qu'un moteur de recommandation de maintenance avec estimation des coûts.", "overview": "Une plateforme intelligente de supervision de véhicules exploitant les données OBD-II pour détecter les anomalies, prédire les pannes et recommander une maintenance préventive. Elle combine une application web full stack, plusieurs modèles de machine learning et un assistant conversationnel pour le diagnostic automobile.", "highlights": ["Application full stack avec un frontend React.js, des API REST NestJS et une base de données PostgreSQL.", "Intégration d'un chatbot Rasa pour l'assistance et le diagnostic automobile.", "Modèles de machine learning (Isolation Forest, XGBoost) pour la détection d'anomalies et la prédiction de pannes au niveau des composants.", "Modèles LSTM/GRU pour prévoir les tendances des capteurs sur 14 jours.", "Moteur de recommandation par similarité qui propose des actions de maintenance adaptées aux pannes détectées et estime les coûts associés.", "Conteneurisation du backend, du frontend, du service IA et de la base de données avec Docker et Docker Compose, puis déploiement sur Render."]},
+    slug: 'smart-car',
+    title: 'Smart Car Monitoring System',
+    category: 'ai',
+    categoryLabel: 'AI & Machine Learning',
+    tags: ['React', 'NestJS', 'PostgreSQL', 'Rasa', 'NLP', 'Docker'],
+    year: '2026',
+    period: '02/2026 – 07/2026',
+    context: 'Engineering internship — Wevioo, Tunis',
+    role: 'Full Stack & AI Engineering Intern',
+    desc: 'Internship project at Wevioo. Full-stack vehicle monitoring app with a Rasa chatbot, ML models (Isolation Forest, XGBoost, LSTM/GRU) for anomaly detection, failure prediction and 14-day sensor forecasts, plus a maintenance recommendation engine with cost estimates.',
+    overview: 'An intelligent vehicle monitoring platform using OBD-II data to detect anomalies, predict failures and recommend preventive maintenance. It combines a full-stack web application, several machine learning models and a conversational assistant for automotive diagnostics.',
+    highlights: [
+      'Full-stack application with a React.js frontend, NestJS REST APIs and a PostgreSQL database.',
+      'Integrated a Rasa chatbot for automotive assistance and diagnostics.',
+      'Machine learning models (Isolation Forest, XGBoost) for anomaly detection and component-level failure prediction.',
+      'LSTM/GRU models to forecast sensor trends over a 14-day period.',
+      'Similarity-based recommendation engine that suggests maintenance actions tailored to the detected failures and estimates the associated costs.',
+      'Containerized the backend, frontend, AI service and database with Docker and Docker Compose, then deployed on Render.'
+    ],
+    cover: 'media/smart-carcover.jpg',
+    screenshots: [],
+    video: 'media/smartcar.mp4',
+    repo: 'https://github.com/Elaabouafoura/smartcarcicd',
+    confidential: true
+  },
+  {
+    id: 2,
+    fr: {"categoryLabel": "IA & Automatisation", "context": "Projet personnel", "role": "Conception et développement", "desc": "Workflow n8n qui analyse les CV avec des LLM, stocke les résultats dans Google Sheets et notifie par e-mail et Telegram. Inclut un système RAG (embeddings bge-m3) et un agent conversationnel avec une interface de chat React/Vite.", "overview": "Un assistant de recrutement automatisé. Les candidats soumettent leur CV via un Google Form ; le CV est analysé par un LLM par rapport au poste visé, les résultats sont stockés et envoyés, et chaque CV est indexé pour qu'un recruteur puisse les interroger en langage naturel grâce à un agent basé sur le RAG.", "highlights": ["Workflow n8n qui reçoit les CV via Google Forms, extrait le texte des PDF, analyse les candidats avec des LLM selon les exigences du poste et stocke les résultats dans Google Sheets.", "Notifications par e-mail (Gmail) et Telegram.", "Système RAG : découpage des CV en segments, embeddings multilingues générés localement (Ollama, bge-m3) et recherche sémantique à partir des métadonnées des candidats.", "Agent IA conversationnel capable de lire la feuille de calcul, de rechercher dans les CV et d'envoyer des e-mails après confirmation de l'utilisateur.", "Interface de chat React/Vite connectée à n8n via des webhooks."]},
+    slug: 'cv-reviewer',
+    title: 'AI-Powered CV Reviewer',
+    category: 'ai',
+    categoryLabel: 'AI & Automation',
+    tags: ['n8n', 'LLM', 'RAG', 'Ollama', 'React'],
+    year: '2026',
+    period: '10/2026',
+    context: 'Personal project',
+    role: 'Design and development',
+    desc: 'n8n workflow that analyzes CVs with LLMs, stores results in Google Sheets and notifies by email and Telegram. Includes a RAG system (bge-m3 embeddings) and a conversational agent with a React/Vite chat interface.',
+    overview: 'An automated recruitment assistant. Candidates submit their CV through a Google Form; the CV is analyzed by an LLM against the target position, results are stored and sent out, and every CV is indexed so a recruiter can query them in natural language with a RAG-powered agent.',
+    highlights: [
+      'n8n workflow that receives CVs via Google Forms, extracts the PDF text, analyzes candidates with LLMs against the job requirements and stores the results in Google Sheets.',
+      'Notifications by e-mail (Gmail) and Telegram.',
+      'RAG system: CV chunking, locally generated multilingual embeddings (Ollama, bge-m3) and semantic search using candidate metadata.',
+      'Conversational AI agent able to read the spreadsheet, search the CVs and send e-mails after user confirmation.',
+      'React/Vite chat interface connected to n8n through webhooks.'
+    ],
+    cover: 'media/workflow1.png',
+    screenshots: ['media/workflow1.png', 'media/workflow2.png'],
+    video: '',
+    repo: 'https://github.com/Elaabouafoura/cv-reviewer',
+    confidential: false
+  },
+  {
+    id: 3,
+    fr: {"categoryLabel": "AR & IoT", "context": "Stage d'ingénieur — TGH Services, Colombes (France)", "role": "Stagiaire ingénieure", "desc": "Projet de stage chez TGH Services. Application AR interactive de supervision et de contrôle de drone, avec diffusion de la vidéo et des données de Unity vers un backend Node.js via sockets, appels audio/vidéo Agora et lunettes XREAL simulées.", "overview": "Une application de réalité augmentée interactive pour superviser et piloter un drone, développée avec Unity et C#. Elle diffuse la vidéo et la télémétrie vers un backend Node.js, prend en charge les appels audio/vidéo en direct et peut être testée sans matériel grâce à des lunettes connectées simulées.", "highlights": ["Application de réalité augmentée interactive pour la supervision et le contrôle d'un drone, développée avec Unity et C#.", "Diffusion vidéo et transmission de données de Unity vers un backend Node.js via des sockets.", "Intégration d'appels audio/vidéo avec Agora.", "Simulation de lunettes XREAL pour tester l'expérience AR sans matériel physique."]},
+    slug: 'ar-drone',
+    title: 'AR Drone Monitoring & Control',
+    category: 'ar',
+    categoryLabel: 'AR & IoT',
+    tags: ['Unity', 'C#', 'Node.js', 'Agora'],
+    year: '2025',
+    period: '06/2025 – 08/2025',
+    context: 'Engineering internship — TGH Services, Colombes (France)',
+    role: 'Engineering Intern',
+    desc: 'Internship project at TGH Services. Interactive AR app for drone monitoring and control, streaming video and data from Unity to a Node.js backend over sockets, with Agora audio/video calls and simulated XREAL glasses.',
+    overview: 'An interactive augmented reality application to monitor and control a drone, built with Unity and C#. It streams video and telemetry to a Node.js backend and supports live audio/video calls, and it can be tested without physical hardware thanks to simulated smart glasses.',
+    highlights: [
+      'Interactive AR application for drone monitoring and control, developed with Unity and C#.',
+      'Video streaming and data transmission from Unity to a Node.js backend using sockets.',
+      'Integrated audio/video calls with Agora.',
+      'Simulated XREAL glasses to test the AR experience without physical hardware.'
+    ],
+    cover: 'media/drone.png',
+    screenshots: [],
+    video: 'media/ar-dronedemo.mp4',
+    repo: '',
+    confidential: true
+  },
+  {
+    id: 4,
+    fr: {"categoryLabel": "Full Stack & IA", "context": "Projet académique", "role": "Développement full stack", "desc": "Plateforme Django (templates HTML) de gestion des utilisateurs, œuvres, expositions et commandes. Utilise Google Gemini pour analyser les avis des utilisateurs et proposer des tendances de couleurs et de style, et Cloudflare Workers AI (Stable Diffusion XL) pour générer des images à partir de texte.", "overview": "Une plateforme web pour explorer et générer des œuvres d'art par IA. Elle gère les utilisateurs, les œuvres, les expositions et les commandes, et utilise l'IA générative à la fois pour créer des images et pour analyser l'avis des visiteurs.", "highlights": ["Application Django avec templates HTML pour la gestion des utilisateurs, œuvres, expositions et commandes.", "API Google Gemini intégrée pour analyser les avis des utilisateurs et proposer des tendances de couleurs et de style.", "Cloudflare Workers AI (Stable Diffusion XL) intégré pour générer des images à partir de descriptions textuelles."]},
+    slug: 'art-gallery',
+    title: 'Generative Art Gallery',
+    category: 'ai',
+    categoryLabel: 'Full Stack & AI',
+    tags: ['Django', 'HTML', 'Gemini', 'SDXL'],
+    year: '2025',
+    period: '09/2025 – 11/2025',
+    context: 'Academic project',
+    role: 'Full stack development',
+    desc: 'Django platform (HTML templates) managing users, artworks, exhibitions and orders. Uses Google Gemini to analyze user reviews and suggest color and style trends, and Cloudflare Workers AI (Stable Diffusion XL) to generate images from text.',
+    overview: 'A web platform to explore and generate AI-powered artwork. It manages users, artworks, exhibitions and orders, and uses generative AI both to create images and to analyze what visitors think.',
+    highlights: [
+      'Django application with HTML templates for managing users, artworks, exhibitions and orders.',
+      'Google Gemini API integrated to analyze user reviews and suggest color and style trends.',
+      'Cloudflare Workers AI (Stable Diffusion XL) integrated to generate images from text descriptions.'
+    ],
+    cover: 'media/art-gallerycover.jpg',
+    screenshots: [],
+    video: '',
+    repo: 'https://github.com/Elaabouafoura/Art-Gallery',
+    confidential: false
+  },
+  {
+    id: 5,
+    fr: {"categoryLabel": "Full Stack & IA", "context": "Projet académique", "role": "Développement full stack", "desc": "Plateforme Laravel pour projets verts, espaces, ressources et financement. GPT-4o-mini génère des scores environnementaux et des explications, et un modèle Random Forest prédit l'éligibilité au financement.", "overview": "Une plateforme web dédiée aux projets durables : elle gère les projets verts, les espaces verts, les ressources et les financements, avec une IA qui aide à noter les projets et à décider de l'éligibilité au financement.", "highlights": ["Plateforme web Laravel avec authentification sécurisée et interface responsive.", "API OpenAI (GPT-4o-mini) intégrée pour générer automatiquement des scores environnementaux et des explications à partir des caractéristiques des espaces verts.", "Modèle de machine learning Random Forest pour prédire l'éligibilité des projets verts au financement."]},
+    slug: 'urbangreen',
+    title: 'UrbanGreen',
+    category: 'ai',
+    categoryLabel: 'Full Stack & AI',
+    tags: ['Laravel', 'PHP', 'OpenAI', 'Random Forest'],
+    year: '2025',
+    period: '03/2025 – 05/2025',
+    context: 'Academic project',
+    role: 'Full stack development',
+    desc: 'Laravel platform for green projects, spaces, resources and funding. GPT-4o-mini generates environmental scores and explanations, and a Random Forest model predicts funding eligibility.',
+    overview: 'A web platform dedicated to sustainable projects: it manages green projects, green spaces, resources and funding, with AI assisting in scoring projects and deciding funding eligibility.',
+    highlights: [
+      'Laravel web platform with secure authentication and a responsive interface.',
+      'OpenAI API (GPT-4o-mini) integrated to automatically generate environmental scores and explanations from green space characteristics.',
+      'Random Forest machine learning model to predict the funding eligibility of green projects.'
+    ],
+    cover: 'media/urbangreencover.jpg',
+    screenshots: shots('urbangreen'),
+    video: '',
+    repo: 'https://github.com/Elaabouafoura/Leaf-Village',
+    confidential: false
+  },
+  {
+    id: 6,
+    fr: {"categoryLabel": "Développement Full Stack", "context": "Projet académique", "role": "Développement full stack", "desc": "Système de gestion des urgences MERN avec suivi des ambulances en temps réel (OpenStreetMap) et modèles de ML exposés via une API Flask pour fournir une assistance instantanée et automatiser la prise de décision.", "overview": "Un système intelligent de gestion des urgences conçu pour optimiser la réponse aux urgences grâce à l'analyse prédictive, combinant une application web MERN et des services de machine learning.", "highlights": ["Application MERN : frontend React, backend Node.js/Express, base de données MongoDB.", "Suivi en temps réel des ambulances avec OpenStreetMap et géolocalisation dynamique.", "Modèles de machine learning intégrés via une API Flask pour fournir une assistance instantanée et automatiser la prise de décision."]},
+    slug: 'rescueon',
+    title: 'RescueOn',
+    category: 'fullstack',
+    categoryLabel: 'Full Stack Development',
+    tags: ['MongoDB', 'Express', 'React', 'Node.js', 'Flask'],
+    year: '2025',
+    period: '01/2025 – 04/2025',
+    context: 'Academic project',
+    role: 'Full stack development',
+    desc: 'MERN emergency management system with real-time ambulance tracking (OpenStreetMap), and ML models exposed through a Flask API to provide instant assistance and automate decision-making.',
+    overview: 'An intelligent emergency management system built to optimize emergency response through predictive analytics, combining a MERN web application with machine learning services.',
+    highlights: [
+      'MERN stack application: React frontend, Node.js/Express backend, MongoDB database.',
+      'Real-time ambulance tracking using OpenStreetMap and dynamic geolocation.',
+      'Machine learning models integrated through a Flask API to provide instant assistance and automate decision-making.'
+    ],
+    cover: 'media/urgence.png',
+    screenshots: [],
+    video: 'media/rescueon.mp4',
+    repo: 'https://github.com/Elaabouafoura/AI-Emergency',
+    confidential: false
+  },
+  {
+    id: 7,
+    fr: {"categoryLabel": "DevOps & CI/CD", "context": "Projet académique", "role": "DevOps", "desc": "Pipeline Jenkins automatisant le build, les tests et le déploiement d'une application Spring Boot : JUnit, analyse qualité SonarQube, artefacts Nexus, Docker Compose et supervision Prometheus/Grafana.", "overview": "Un pipeline CI/CD complet qui automatise le build, les tests et le déploiement d'une application Spring Boot, avec contrôle de la qualité du code, gestion des artefacts, conteneurisation et supervision.", "highlights": ["Pipeline Jenkins automatisant le build, les tests et le déploiement d'une application Spring Boot.", "Tests unitaires avec JUnit et analyse de la qualité du code avec SonarQube.", "Gestion des artefacts avec Nexus.", "Conteneurisation avec Docker et Docker Compose.", "Supervision continue avec Prometheus et Grafana."]},
+    slug: 'cicd-pipeline',
+    title: 'CI/CD Automation Pipeline',
+    category: 'devops',
+    categoryLabel: 'DevOps & CI/CD',
+    tags: ['Spring Boot', 'Jenkins', 'Docker', 'SonarQube', 'Grafana', 'Nexus'],
+    year: '2024',
+    period: '09/2024 – 12/2024',
+    context: 'Academic project',
+    role: 'DevOps',
+    desc: 'Jenkins pipeline automating build, test and deployment of a Spring Boot app: JUnit, SonarQube quality analysis, Nexus artifacts, Docker Compose, and Prometheus/Grafana monitoring.',
+    overview: 'A complete CI/CD pipeline that automates the build, test and deployment of a Spring Boot application, with code quality control, artifact management, containerization and monitoring.',
+    highlights: [
+      'Jenkins pipeline automating build, testing and deployment of a Spring Boot application.',
+      'Unit testing with JUnit and code quality analysis with SonarQube.',
+      'Artifact management with Nexus.',
+      'Containerization with Docker and Docker Compose.',
+      'Continuous monitoring with Prometheus and Grafana.'
+    ],
+    cover: 'media/cicd-pipelinecover.jpg',
+    screenshots: shots('cicd-pipeline'),
+    video: '',
+    repo: '',
+    confidential: false
+  }
+];
+
+const T = {
+ "Education": "Formation",
+ "Engineering Degree in Computer Science": "Diplôme d'ingénieur en informatique",
+ "ESPRIT – Private Higher School of Engineering and Technology, Tunis": "ESPRIT – École Supérieure Privée d'Ingénierie et de Technologies, Tunis",
+ "Scientific Preparatory Cycle": "Cycle préparatoire scientifique",
+ "Faculty of Sciences of Tunis": "Faculté des Sciences de Tunis",
+ "Full Stack · AI · DevOps": "Full Stack · IA · DevOps",
+ "Light mode": "Mode clair",
+ "Dark mode": "Mode sombre",
+ "Services": "Services",
+ "Projects": "Projets",
+ "About": "À propos",
+ "Contact": "Contact",
+ "Hire me": "Me recruter",
+ "Hire me →": "Me recruter →",
+ "Seeking a Full Stack & AI Engineer role": "À la recherche d'un poste d'ingénieure Full Stack & IA",
+ "Hi, I'm": "Bonjour, je suis",
+ "Computer Engineer": "Ingénieure informatique",
+ "based in Tunis, specializing in Full Stack Development and Artificial Intelligence. I build web applications, ML models and AI-powered solutions — from React and NestJS to RAG and CI/CD.": "basée à Tunis, spécialisée en développement Full Stack et en intelligence artificielle. Je conçois des applications web, des modèles de ML et des solutions propulsées par l'IA — de React et NestJS jusqu'au RAG et au CI/CD.",
+ "View my projects": "Voir mes projets",
+ "Get in touch": "Me contacter",
+ "Engineering internships": "Stages d'ingénieur",
+ "Featured projects": "Projets présentés",
+ "Languages": "Langues",
+ "What I do": "Ce que je fais",
+ "Full Stack Development": "Développement Full Stack",
+ "End-to-end web applications with React,Angular, Node.js / NestJS, Django, Laravel and Spring Boot — clean APIs, solid databases (PostgreSQL, MongoDB, MySQL) and responsive interfaces.": "Applications web de bout en bout avec React, Angular, Node.js / NestJS, Django, Laravel et Spring Boot — des API propres, des bases de données solides (PostgreSQL, MongoDB, MySQL) et des interfaces responsives.",
+ "AI & Machine Learning": "IA & Machine Learning",
+ "Anomaly detection and failure prediction (Isolation Forest, XGBoost, LSTM/GRU), RAG systems, conversational agents and LLM-powered automation (Rasa, OpenAI, Gemini, n8n).": "Détection d'anomalies et prédiction de pannes (Isolation Forest, XGBoost, LSTM/GRU), systèmes RAG, agents conversationnels et automatisation basée sur les LLM (Rasa, OpenAI, Gemini, n8n).",
+ "DevOps & CI/CD": "DevOps & CI/CD",
+ "Automated pipelines with Jenkins, SonarQube and Nexus, containerization with Docker, and monitoring with Prometheus and Grafana — ship faster, break less.": "Pipelines automatisés avec Jenkins, SonarQube et Nexus, conteneurisation avec Docker, et supervision avec Prometheus et Grafana — livrer plus vite, casser moins.",
+ "Portfolio": "Portfolio",
+ "My projects": "Mes projets",
+ "Internship and personal work in Full Stack Development, AI & Machine Learning, DevOps and AR/IoT.": "Travaux de stage et personnels en développement Full Stack, IA & Machine Learning, DevOps et AR/IoT.",
+ "projects": "projets",
+ "All Projects": "Tous les projets",
+ "Full Stack": "Full Stack",
+ "DevOps": "DevOps",
+ "AR & IoT": "AR & IoT",
+ "View project →": "Voir le projet →",
+ "Code": "Code",
+ "GitHub repository of ": "Dépôt GitHub de ",
+ "No projects in this category yet.": "Aucun projet dans cette catégorie pour le moment.",
+ "About me": "À propos de moi",
+ "A bit about": "Un peu plus",
+ "who I am": "sur moi",
+ "I'm Elaa Bouafoura, a computer engineer from Tunis. I hold an engineering degree in Computer Science from ESPRIT (2023–2026) and have completed internships at Wevioo (Tunis), TGH Services (France) and ArabSoft (Tunis).": "Je suis Elaa Bouafoura, ingénieure informatique originaire de Tunis. Je suis titulaire d'un diplôme d'ingénieur en informatique de l'ESPRIT (2023–2026) et j'ai effectué des stages chez Wevioo (Tunis), TGH Services (France) et ArabSoft (Tunis).",
+ "I like turning complex problems — predictive maintenance, recruitment automation, emergency response — into reliable products, from the first line of code to the CI/CD pipeline that ships it. I'm looking for a Full Stack & AI Engineer position.": "J'aime transformer des problèmes complexes — maintenance prédictive, automatisation du recrutement, gestion des urgences — en produits fiables, de la première ligne de code jusqu'au pipeline CI/CD qui les livre. Je recherche un poste d'ingénieure Full Stack & IA.",
+ "Languages:": "Langues :",
+ "Arabic (native) · French (C1) · English (B2)": "Arabe (langue maternelle) · Français (C1) · Anglais (B2)",
+ "Stack & tools": "Stack & outils",
+ "Let's build": "Construisons",
+ "something together": "quelque chose ensemble",
+ "I'm open to full-time roles and freelance missions in full stack, AI/ML and DevOps. Have an idea or a project in mind? Let's talk.": "Je suis ouverte aux postes à temps plein et aux missions freelance en full stack, IA/ML et DevOps. Une idée ou un projet en tête ? Parlons-en.",
+ "Name": "Nom",
+ "Email": "E-mail",
+ "Subject": "Objet",
+ "Message": "Message",
+ "": "",
+ "Project inquiry": "Demande de projet",
+ "Tell me about your project...": "Parlez-moi de votre projet...",
+ "Send message →": "Envoyer le message →",
+ "All rights reserved.": "Tous droits réservés.",
+ "Elaa Bouafoura. All rights reserved.": "Elaa Bouafoura. Tous droits réservés.",
+ "Back to projects": "Retour aux projets",
+ "View on GitHub": "Voir sur GitHub",
+ "Company project — source code not public": "Projet en entreprise — code source non public",
+ "Context": "Contexte",
+ "Role": "Rôle",
+ "Period": "Période",
+ "Category": "Catégorie",
+ "What I built": "Ce que j'ai réalisé",
+ "Tech stack": "Stack technique",
+ "Demo video": "Vidéo de démonstration",
+ "Screenshots": "Captures d'écran",
+ "← Previous": "← Précédent",
+ "Next →": "Suivant →"
+ 
+};
+
+function app() {
+  return {
+    dark: false,
+    lang: 'en',
+    mm: false,
+    sc: false,
+    s: 'hero',
+
+    filter: 'all',
+
+    // project detail overlay
+    current: null,
+    shots: [],
+    slide: 0,
+    moved: false,
+    _drag: null,
+    lightbox: null,
+    _title: document.title,
+    _orig: new WeakMap(),
+    filterOptions: [
+      { value:'all', label:'All Projects' },
+      { value:'fullstack', label:'Full Stack' },
+      { value:'ai', label:'AI & Machine Learning' },
+      { value:'devops', label:'DevOps' },
+      { value:'ar', label:'AR & IoT' }
+    ],
+    allProjects: PROJECTS,
+    get visibleCount() {
+      return this.filter === 'all' ? this.allProjects.length : this.allProjects.filter(p => p.category === this.filter).length;
+    },
+
+    // ---------- language (EN / FR) ----------
+    t(k) { return this.lang === 'fr' && T[k] !== undefined ? T[k] : k; },
+    L(p) { return this.lang === 'fr' && p && p.fr ? { ...p, ...p.fr } : p; },
+    toggleLang() { this.lang = this.lang === 'en' ? 'fr' : 'en'; },
+    translateStatic() {
+      const fr = this.lang === 'fr';
+      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
+      nodes.forEach(n => {
+        const el = n.parentElement;
+        if (!el || el.closest('script,style,[x-text]')) return;
+        if (!this._orig.has(n)) {
+          const key = n.data.replace(/\s+/g, ' ').trim();
+          if (!key || T[key] === undefined) return;
+          this._orig.set(n, n.data);
+        }
+        const o = this._orig.get(n);
+        const key = o.replace(/\s+/g, ' ').trim();
+        const pre = o.match(/^\s*/)[0], post = o.match(/\s*$/)[0];
+        n.data = fr ? pre + T[key] + post : o;
+      });
+      document.querySelectorAll('[placeholder]').forEach(e => {
+        if (!e._ph) e._ph = e.getAttribute('placeholder');
+        e.setAttribute('placeholder', fr && T[e._ph] !== undefined ? T[e._ph] : e._ph);
+      });
+      document.documentElement.lang = this.lang;
+    },
+
+    // ---------- project detail (opened with #project-<id>) ----------
+    get idx() { return this.current ? PROJECTS.findIndex(x => x.id === this.current.id) : -1; },
+    get prev() { return PROJECTS[(this.idx - 1 + PROJECTS.length) % PROJECTS.length]; },
+    get next() { return PROJECTS[(this.idx + 1) % PROJECTS.length]; },
+
+    get videoEmbed() {
+      const v = this.current && this.current.video;
+      if (!v) return '';
+      let m = v.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
+      if (m) return 'https://www.youtube.com/embed/' + m[1];
+      m = v.match(/loom\.com\/(?:share|embed)\/(\w+)/);
+      if (m) return 'https://www.loom.com/embed/' + m[1];
+      m = v.match(/vimeo\.com\/(\d+)/);
+      if (m) return 'https://player.vimeo.com/video/' + m[1];
+      return '';
+    },
+    get videoKind() {
+      const v = this.current && this.current.video;
+      if (!v) return '';
+      if (/\.(mp4|webm|ogg)$/i.test(v)) return 'file';
+      return this.videoEmbed ? 'iframe' : '';
+    },
+
+    openFromHash() {
+      const m = location.hash.match(/^#project-(\d+)$/);
+      const p = m ? PROJECTS.find(x => x.id === parseInt(m[1], 10)) : null;
+      this.current = p || null;
+      this.shots = [];
+      this.slide = 0;
+      this.lightbox = null;
+      document.body.style.overflow = p ? 'hidden' : '';
+      if (p) {
+        document.title = p.title + ' — Elaa Bouafoura';
+        this.loadShots();
+        this.$nextTick(() => { if (this.$refs.detail) this.$refs.detail.scrollTop = 0; });
+      } else {
+        document.title = this._title;
+      }
+    },
+    closeProject() { location.hash = '#work'; },
+
+    // ---------- screenshots slider (cv-reviewer) ----------
+    slideTo(i) {
+      const el = this.$refs.slider; if (!el) return;
+      i = Math.max(0, Math.min(this.shots.length - 1, i));
+      el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' });
+      this.slide = i;
+    },
+    sliderDown(e) {
+      const el = this.$refs.slider;
+      this._drag = { x: e.clientX, l: el.scrollLeft };
+      this.moved = false;
+      el.style.scrollSnapType = 'none';
+    },
+    sliderMove(e) {
+      if (!this._drag) return;
+      const dx = e.clientX - this._drag.x;
+      if (Math.abs(dx) > 5) this.moved = true;
+      this.$refs.slider.scrollLeft = this._drag.l - dx;
+    },
+    sliderUp() {
+      if (!this._drag) return;
+      const el = this.$refs.slider; this._drag = null;
+      el.style.scrollSnapType = '';
+      this.slideTo(Math.round(el.scrollLeft / el.clientWidth));
+      setTimeout(() => { this.moved = false; }, 0);
+    },
+
+    // keep only the screenshots that really exist in media/<slug>/ (screenshot-N .png / .jpg / .jpeg / .webp)
+    loadShots() {
+      const list = this.current.screenshots || [];
+      const exts = ['png', 'jpg', 'jpeg', 'webp'];
+      const found = list.map(() => null);
+      list.forEach((src, i) => {
+        const base = src.replace(/\.\w+$/, '');
+        const tryExt = (k) => {
+          if (k >= exts.length) return;
+          const url = base + '.' + exts[k];
+          const im = new Image();
+          im.onload = () => { found[i] = url; this.shots = found.filter(Boolean); };
+          im.onerror = () => tryExt(k + 1);
+          im.src = url;
+        };
+        tryExt(0);
+      });
+    },
+
+    init() {
+      let sl = null; try { sl = localStorage.getItem('lang'); } catch (e) {}
+      this.lang = sl ? sl : ((navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en');
+      this.$nextTick(() => this.translateStatic());
+      this.$watch('lang', v => {
+        try { localStorage.setItem('lang', v); } catch (e) {}
+        this.translateStatic();
+      });
+      const saved = localStorage.getItem('theme');
+      this.dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.$watch('dark', v => localStorage.setItem('theme', v ? 'dark' : 'light'));
+
+      window.addEventListener('scroll', () => {
+        this.sc = window.scrollY > 20;
+        this.updateSection();
+      }, { passive: true });
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      window.addEventListener('hashchange', () => this.openFromHash());
+      this.openFromHash();
+    },
+
+    updateSection() {
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 60;
+      if (atBottom) { this.s = 'contact'; return; }
+      const ids = ['contact','about','work','services','hero'];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 130) { this.s = id; return; }
+      }
+    },
+
+   
+async sendMail(e) {
+    const form = e.target;
+    const formData = new FormData(form);
+
+    formData.append('_subject', 'New message from Portfolio');
+
+    try {
+        const response = await fetch(
+            'https://formspree.io/f/xnpdovzd',
+            {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        );
+
+        if (response.ok) {
+            alert('Message sent successfully!');
+            form.reset();
+        } else {
+            alert('Error while sending the message.');
+        }
+    } catch (error) {
+        alert('Unable to send the message. Please try again.');
+    }
+}
+
+  }
+}
+</script>
+
+</body>
+</html>
